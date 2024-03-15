@@ -12,7 +12,8 @@ module "vpc" {
 // Public subnet module
 module "public_subnet" {
   source  = "./public_subnet"
-  vpc_id  = module.vpc.vpc_cidr
+  vpc_id  = module.vpc.vpc_id
+  vpc_cidr = module.vpc.vpc_cidr
 }
 
 // EC2 module
@@ -24,5 +25,5 @@ module "ec2" {
 // Security group module
 module "security_group" {
   source = "./security_group"
-  vpc_id = module.vpc.vpc_cidr
+  vpc_id = module.vpc.vpc_id
 }
