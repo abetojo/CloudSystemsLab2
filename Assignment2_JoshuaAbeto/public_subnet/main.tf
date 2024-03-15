@@ -5,11 +5,12 @@ provider "aws" {
 }
 
 variable "vpc_id" {}
+variable "vpc_cidr" {}
 
 resource "aws_subnet" "public" {
   count           = 4
   vpc_id          = var.vpc_id
-  cidr_block      = cidrsubnet(var.vpc_id, 8, count.index)
+  cidr_block      = cidrsubnet(var.vpc_cidr, 8, count.index)
   map_public_ip_on_launch = true
 }
 
